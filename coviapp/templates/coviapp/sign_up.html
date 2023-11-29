@@ -1,0 +1,58 @@
+{% extends "coviapp/base.html" %}
+{% load widget_tweaks %}
+
+{% block mycss %}
+	<style>
+    body{
+      background: rgb(219,226,226);
+    }
+    .row1{
+      background: white;
+      border-radius: 15px;
+    }
+    .img1{
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+    }
+	 </style>
+{% endblock %}
+{% block content%}
+<section class="Form my-5 mx-5">
+  <div class="container">
+    <div class="row row1 shadow-lg">
+      <div class="col-lg-5 py-3 text-center bg-warning img1">
+        {% load static %}
+        <img src="{% static 'img/undraw_sign_in_re_o58h.svg' %}" class="img-fluid">
+      </div>
+          <div class="col-lg-7 px-5  py-5">
+            <h1 class="font-weight-bold p-3">Covi-Care Sign-Up</h1>
+            <form method="post">
+              {% csrf_token %}
+              {% for field in form %}
+                <div class="form-row my-2">
+                  <div class="col-lg-7">
+                    <label class="form-label lead">{{ field.label_tag }}</label>
+                     {{ field }}
+                     {% if field.help_text %}
+                    <br>
+                    <small>
+                    <span style="color:blue" class="help-block">{{ field.help_text }}</span>
+                      </small>
+                     {% endif %}
+                    {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                     {% endfor %}
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="form-row my-3">
+                <div class="col-lg-7  text-center">
+                  <button class="btn btn-primary my-3" type="submit">submit</button>
+                </div>
+                </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

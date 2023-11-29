@@ -1,0 +1,55 @@
+{% extends 'coviapp/base.html' %}
+{% load widget_tweaks %}
+
+
+{% block content%}
+  <!-- base html block content -->
+  <div class="container">
+    <h2 class="text-center"> Hospital Status Form</h2>
+    <form name="hospital_form" class="form-group" method="get">
+      <div>
+      {{ filter.form.as_p }}
+    </div>
+     <!-- <div class="jumbotron">
+      <div class="row">
+        <div class="col">
+          <label for="hospitalname" class="form-label lead">Vaccine Name</label>
+          <input type="text" class="form-control" placeholder="hospital name" id="hospitalname">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="pin" class="form-label lead">PIN</label>
+          <input type="text" class="form-control" placeholder="enter the six digit pin" id="pin">
+        </div>
+      </div> -->
+      <div class="text-center">
+      <button type="submit" class="btn btn-primary my-5">
+       Search
+      </button>
+    </div>
+  </div>
+    </form>
+  </div>
+  <div class="container">
+     <table class="table table-bordered table-secondary table-hover">
+    <thead class="table-success">
+      <tr>
+        <th>Hospital Name</th>
+        <th>Hospital Address</th>
+        <th>PIN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- dummy data to cheak design -->
+    {% for hospital in filter.qs %}
+      <tr>
+        <td>{{hospital.name}}</td>
+        <td>{{hospital.Address}}</td>
+        <td>{{hospital.pincode}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}

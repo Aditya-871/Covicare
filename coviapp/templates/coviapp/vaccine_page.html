@@ -1,0 +1,60 @@
+{% extends 'coviapp/base.html' %}
+{% load widget_tweaks %}
+
+{% block content%}
+  <!-- base html block content -->
+  <div class="container">
+    <h2 class="text-center"> Vaccine Status Form</h2>
+    <form name="vaccine_form" class="form-group" method="get">
+      <div>
+      {{ filter.form.as_p }}
+      </div>
+
+      <!--  <div class="row">
+        <div class="col form-group">
+          {{ filter.form.vaccine_name.label_tag }}
+          {% render_field filter.form.vaccine_name class+="form-control" %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          {{ filter.form.hospital__pincode.label_tag }}
+          {% render_field filter.form.hospital__pincode class+="form-control" %}
+        </div>
+      </div>
+      -->
+      <div class="text-center">
+      <button type="submit" class="btn btn-primary my-5">
+       Search
+      </button>
+    </div>
+    </form>
+  </div>
+  <div class="container">
+     <table class="table table-bordered table-secondary table-hover">
+    <thead class="table-success">
+      <tr>
+        <th>Vaccine Name</th>
+        <th>ammount of vaccine Dose 1</th>
+        <th>amount of Vaccine Dose 2</th>
+        <th>Hospital name</th>
+        <th>Hospital Address</th>
+        <th>Pincode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- dummy data to cheak design -->
+        {% for vaccine in filter.qs %}
+      <tr>
+        <td>{{vaccine.vaccine_name}}</td>
+        <td>{{vaccine.amount_dose_1}}</td>
+        <td>{{vaccine.amount_dose_2}}</td>
+        <td>{{vaccine.hospital.name}}</td>
+        <td>{{vaccine.hospital.Address}}</td>
+        <td>{{vaccine.hospital.pincode}}</td>
+      </tr> 
+      {% endfor %}    
+    </tbody>
+  </table>
+  </div>
+  {% endblock %}

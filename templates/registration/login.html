@@ -1,0 +1,64 @@
+{% extends "coviapp/base.html" %}
+{% load widget_tweaks %}
+{% block mycss %}
+	<style>
+    body{
+      background: rgb(219,226,226);
+    }
+    .row1{
+      background: white;
+      border-radius: 15px;
+    }
+    .img1{
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+    }
+	 </style>
+{% endblock %}
+
+{% block content%}
+{% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% endif %}
+  {% endif %}
+<section class="Form my-5 mx-5">
+  <div class="container">
+    <div class="row row1">
+      <div class="col-lg-5 py-3 text-center bg-warning img1">
+       {% load static %}
+        <img src="{% static 'img/undraw_login_re_4vu2.svg' %}" class="img-fluid">
+      </div>
+          <div class="col-lg-7 px-5  py-5">
+            <h1 class="font-weight-bold p-3">Covi-Care Log-in</h1>
+
+
+              <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-row my-3">
+                  <div class="col-lg-7">
+                  {{ form.username.label_tag }}
+                      {{ form.username }}
+                  </div>
+                </div>
+                <div class="form-row">
+                <div class="col-lg-7">
+                  {{ form.password.label_tag }}
+                    {{ form.password }}
+                </div>
+                </div>
+                <div class="form-row my-3">
+                <div class="col-lg-7  text-center">
+                  <button class="btn btn-primary my-3" type="submit">login</button>
+                </div>
+                </div>
+          </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

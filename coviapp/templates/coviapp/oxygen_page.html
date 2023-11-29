@@ -1,0 +1,43 @@
+{% extends 'coviapp/base.html' %}
+{% load widget_tweaks %}
+
+
+{% block content%}
+  <!-- base html block content -->
+  <div class="container">
+    <h2 class="text-center">Oxygen Status Form</h2>
+    <form name="oxygen_form" class="form-group" method="get">
+      <div>
+      {{ filter.form.as_p }}
+      </div>
+      <div class="text-center">
+      <button type="submit" class="btn btn-primary my-5">
+       Search
+      </button>
+    </div>
+    </form>
+  </div>
+  <div class="container">
+     <table class="table table-bordered table-secondary table-hover">
+    <thead class="table-success">
+      <tr>
+        <th>Oxygen amount</th>
+        <th>Oxygen cost</th>
+        <th>Hospital name</th>
+        <th>hospital address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- dummy data to cheak design -->
+        {% for oxygen in filter.qs %}
+      <tr>
+        <td>{{oxygen.amount}}</td>
+        <td>{{oxygen.cost}}</td>
+        <td>{{oxygen.hospital.name}}</td>
+        <td>{{oxygen.hospital.Address}}</td>
+      </tr> 
+      {% endfor %}      
+    </tbody>
+  </table>
+  </div>
+  {% endblock %}

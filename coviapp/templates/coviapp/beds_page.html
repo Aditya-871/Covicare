@@ -1,0 +1,55 @@
+{% extends 'coviapp/base.html' %}
+{% load widget_tweaks %}
+
+{% block content%}
+  <!-- base html block content -->
+  <div class="container">
+    <h2 class="text-center"> Beds Status Form </h2>
+    <form name="Beds_form" class="form-group" method="get">
+      <div class="container">
+      {{ filter.form.as_p }}
+    </div>
+      <!--<div class="jumbotron">
+      <div class="row">
+        <div class="col">
+          <label for="bedname" class="form-label lead">Bed Type</label>
+          <input type="text" class="form-control" placeholder="vaccine name" id="bedname">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="pin" class="form-label lead">PIN</label>
+          <input type="text" class="form-control" placeholder="enter the six digit pin" id="pin">
+        </div>
+      </div> -->
+      <div class="text-center">
+      <button type="submit" class="btn btn-primary my-5">
+       Search
+      </button>
+    </div>
+    </form>
+  </div>
+  <div class="container">
+     <table class="table table-bordered table-primary table-hover">
+    <thead class="table-success">
+      <tr>
+        <th>Bed amount</th>
+        <th>Hospital name</th>
+        <th>Hospital address</th>
+        <th>Beds Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- dummy data to cheak design -->
+        {% for beds in filter.qs %}
+      <tr>
+        <td>{{beds.amount}}</td>
+        <td>{{beds.hospital_id.name}}</td>
+        <td>{{beds.hospital_id.Address}}</td>
+        <td>{{beds.cost}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% endblock %}
